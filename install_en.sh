@@ -523,6 +523,10 @@ modify_dashboard_config() {
         echo "Downloading service file"
         if [ "$os_alpine" != 1 ]; then
             _download="sudo wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICE https://${GITHUB_RAW_URL}/services/nezha-dashboard.service >/dev/null 2>&1"
+            if ! eval "$_download"; then
+                err "File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+                return 0
+            fi
         else
             _download="sudo wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICERC https://${GITHUB_RAW_URL}/services/nezha-dashboard >/dev/null 2>&1"
             if ! eval "$_download"; then
@@ -572,17 +576,17 @@ restart_and_update_docker() {
 restart_and_update_standalone() {
     _version=$(curl -m 10 -sL "https://api.github.com/repos/naiba/nezha/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
     if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/naibahq/nezha/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
-    fi
-    if [ -z "$_version" ]; then
         _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/naiba/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/naiba\/nezha@/v/g')
     fi
     if [ -z "$_version" ]; then
         _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/naiba/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/naiba\/nezha@/v/g')
     fi
+    if [ -z "$_version" ]; then
+        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/naibahq/nezha/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+    fi
 
     if [ -z "$_version" ]; then
-        err "Fail to obtain Agent version, please check if the network can link https://api.github.com/repos/nezhahq/agent/releases/latest"
+        err "Fail to obtain Dashboard version, please check if the network can link https://api.github.com/repos/naiba/nezha/releases/latest"
         return 1
     else
         echo "The current latest version is: ${_version}"
