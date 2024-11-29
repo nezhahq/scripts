@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-29 19:59+0800\n"
+"POT-Creation-Date: 2024-11-29 21:03+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,187 +104,186 @@ msgstr ""
 msgid "* Press Enter to return to the main menu *"
 msgstr ""
 
-#: nezha/template.sh:265
+#: nezha/template.sh:262
 msgid "> Install"
 msgstr ""
 
-#: nezha/template.sh:271
+#: nezha/template.sh:268
 msgid ""
 "You may have already installed the dashboard, repeated installation will "
 "overwrite the data, please pay attention to backup."
 msgstr ""
 
-#: nezha/template.sh:272
+#: nezha/template.sh:269
 msgid "Exit the installation? [Y/n]"
 msgstr ""
 
-#: nezha/template.sh:276 nezha/template.sh:284
+#: nezha/template.sh:273 nezha/template.sh:281
 msgid "Exit the installation"
 msgstr ""
 
-#: nezha/template.sh:280
+#: nezha/template.sh:277
 msgid "Continue"
 msgstr ""
 
-#: nezha/template.sh:298
+#: nezha/template.sh:295
 msgid "Modify Configuration"
 msgstr ""
 
-#: nezha/template.sh:302
+#: nezha/template.sh:299
 msgid "Download Docker Script"
 msgstr ""
 
-#: nezha/template.sh:305 nezha/template.sh:316
+#: nezha/template.sh:302 nezha/template.sh:313
 msgid ""
 "Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
 msgstr ""
 
-#: nezha/template.sh:309
+#: nezha/template.sh:306
 msgid ""
 "Please install docker-compose manually. https://docs.docker.com/compose/"
 "install/linux/"
 msgstr ""
 
-#: nezha/template.sh:321
+#: nezha/template.sh:318
 msgid "Please enter the site title: "
 msgstr ""
 
-#: nezha/template.sh:323
+#: nezha/template.sh:320
 msgid "Please enter the exposed port: (default 8008)"
 msgstr ""
 
-#: nezha/template.sh:325
+#: nezha/template.sh:322
 msgid "Please specify the backend locale"
 msgstr ""
 
-#: nezha/template.sh:330
+#: nezha/template.sh:327
 msgid "Please enter [1-3]: "
 msgstr ""
 
-#: nezha/template.sh:346
+#: nezha/template.sh:343
 msgid "Please enter the correct number [1-3]"
 msgstr ""
 
-#: nezha/template.sh:352
+#: nezha/template.sh:349
 msgid "All options cannot be empty"
 msgstr ""
 
-#: nezha/template.sh:376
+#: nezha/template.sh:373
 msgid "Downloading service file"
 msgstr ""
 
-#: nezha/template.sh:380 nezha/template.sh:386
+#: nezha/template.sh:377 nezha/template.sh:383
 msgid ""
 "File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
 msgstr ""
 
-#: nezha/template.sh:394
+#: nezha/template.sh:391
 msgid ""
 "Dashboard configuration modified successfully, please wait for Dashboard "
 "self-restart to take effect"
 msgstr ""
 
-#: nezha/template.sh:404
+#: nezha/template.sh:401
 msgid "> Restart and Update"
 msgstr ""
 
-#: nezha/template.sh:413
+#: nezha/template.sh:410
 msgid "Nezha Monitoring Restart Successful"
 msgstr ""
 
-#: nezha/template.sh:414
+#: nezha/template.sh:411
 msgid "Default address: domain:site_access_port"
 msgstr ""
 
-#: nezha/template.sh:416
+#: nezha/template.sh:413
 msgid ""
 "The restart failed, probably because the boot time exceeded two seconds, "
 "please check the log information later"
 msgstr ""
 
-#: nezha/template.sh:443
+#: nezha/template.sh:440
 msgid ""
 "Fail to obtain Dashboard version, please check if the network can link "
 "https://api.github.com/repos/nezhahq/nezha/releases/latest"
 msgstr ""
 
-#: nezha/template.sh:446
+#: nezha/template.sh:443
 msgid "The current latest version is: ${_version}"
 msgstr ""
 
-#: nezha/template.sh:477
+#: nezha/template.sh:472
 msgid "> View Log"
 msgstr ""
 
-#: nezha/template.sh:503
+#: nezha/template.sh:498
 msgid "> Uninstall"
 msgstr ""
 
-#: nezha/template.sh:550
+#: nezha/template.sh:537
 msgid "Nezha Monitor Management Script Usage: "
 msgstr ""
 
-#: nezha/template.sh:552
-msgid "./nezha.sh                            - Show Menu"
+#: nezha/template.sh:539
+msgid "./nezha.sh                    - Show Menu"
 msgstr ""
 
-#: nezha/template.sh:553
-msgid "./nezha.sh install_dashboard          - Install Dashboard"
+#: nezha/template.sh:540
+msgid "./nezha.sh install            - Install Dashboard"
 msgstr ""
 
-#: nezha/template.sh:554
-msgid "./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration"
+#: nezha/template.sh:541
+msgid "./nezha.sh modify_config      - Modify Dashboard Configuration"
 msgstr ""
 
-#: nezha/template.sh:555
-msgid ""
-"./nezha.sh restart_and_update         - Restart and Update the Dashboard"
+#: nezha/template.sh:542
+msgid "./nezha.sh restart_and_update - Restart and Update the Dashboard"
 msgstr ""
 
-#: nezha/template.sh:556
-msgid "./nezha.sh show_dashboard_log         - View Dashboard Log"
+#: nezha/template.sh:543
+msgid "./nezha.sh show_log           - View Dashboard Log"
 msgstr ""
 
-#: nezha/template.sh:557
-msgid "./nezha.sh uninstall_dashboard        - Uninstall Dashboard"
+#: nezha/template.sh:544
+msgid "./nezha.sh uninstall          - Uninstall Dashboard"
 msgstr ""
 
-#: nezha/template.sh:562
+#: nezha/template.sh:549
 msgid "${green}Nezha Monitor Management Script${plain}"
 msgstr ""
 
-#: nezha/template.sh:564
+#: nezha/template.sh:551
 msgid "${green}1.${plain}  Install Dashboard"
 msgstr ""
 
-#: nezha/template.sh:565
+#: nezha/template.sh:552
 msgid "${green}2.${plain}  Modify Dashboard Configuration"
 msgstr ""
 
-#: nezha/template.sh:566
+#: nezha/template.sh:553
 msgid "${green}3.${plain}  Restart and Update Dashboard"
 msgstr ""
 
-#: nezha/template.sh:567
+#: nezha/template.sh:554
 msgid "${green}4.${plain}  View Dashboard Log"
 msgstr ""
 
-#: nezha/template.sh:568
+#: nezha/template.sh:555
 msgid "${green}5.${plain}  Uninstall Dashboard"
 msgstr ""
 
-#: nezha/template.sh:570
+#: nezha/template.sh:557
 msgid "${green}6.${plain}  Update Script"
 msgstr ""
 
-#: nezha/template.sh:572
+#: nezha/template.sh:559
 msgid "${green}0.${plain}  Exit Script"
 msgstr ""
 
-#: nezha/template.sh:574
+#: nezha/template.sh:561
 msgid "Please enter [0-6]: "
 msgstr ""
 
-#: nezha/template.sh:598
+#: nezha/template.sh:585
 msgid "Please enter the correct number [0-6]"
 msgstr ""

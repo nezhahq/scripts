@@ -25,7 +25,7 @@ info() {
 println() {
     printf "$*\n"
 }
-   
+
 sudo() {
     myEUID=$(id -ru)
     if [ "$myEUID" -ne 0 ]; then
@@ -536,12 +536,12 @@ uninstall_dashboard_standalone() {
 show_usage() {
     echo _("Nezha Monitor Management Script Usage: ")
     echo "--------------------------------------------------------"
-    echo _("./nezha.sh                            - Show Menu")
-    echo _("./nezha.sh install_dashboard          - Install Dashboard")
-    echo _("./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration")
-    echo _("./nezha.sh restart_and_update         - Restart and Update the Dashboard")
-    echo _("./nezha.sh show_dashboard_log         - View Dashboard Log")
-    echo _("./nezha.sh uninstall_dashboard        - Uninstall Dashboard")
+    echo _("./nezha.sh                    - Show Menu")
+    echo _("./nezha.sh install            - Install Dashboard")
+    echo _("./nezha.sh modify_config      - Modify Dashboard Configuration")
+    echo _("./nezha.sh restart_and_update - Restart and Update the Dashboard")
+    echo _("./nezha.sh show_log           - View Dashboard Log")
+    echo _("./nezha.sh uninstall          - Uninstall Dashboard")
     echo "--------------------------------------------------------"
 }
 
@@ -591,20 +591,20 @@ init
 
 if [ $# -gt 0 ]; then
     case $1 in
-        "install_dashboard")
-            install_dashboard 0
+        "install")
+            install 0
             ;;
-        "modify_dashboard_config")
-            modify_dashboard_config 0
+        "modify_config")
+            modify_config 0
             ;;
         "restart_and_update")
             restart_and_update 0
             ;;
-        "show_dashboard_log")
-            show_dashboard_log 0
+        "show_log")
+            show_log 0
             ;;
-        "uninstall_dashboard")
-            uninstall_dashboard 0
+        "uninstall")
+            uninstall 0
             ;;
         "update_script")
             update_script 0

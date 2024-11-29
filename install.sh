@@ -25,7 +25,7 @@ info() {
 println() {
     printf "$*\n"
 }
-   
+
 sudo() {
     myEUID=$(id -ru)
     if [ "$myEUID" -ne 0 ]; then
@@ -536,12 +536,12 @@ uninstall_dashboard_standalone() {
 show_usage() {
     echo "哪吒监控 管理脚本使用方法: "
     echo "--------------------------------------------------------"
-    echo "./nezha.sh                            - 显示管理菜单"
-    echo "./nezha.sh install_dashboard          - 安装面板端"
-    echo "./nezha.sh modify_dashboard_config    - 修改面板配置"
-    echo "./nezha.sh restart_and_update         - 重启并更新面板"
-    echo "./nezha.sh show_dashboard_log         - 查看面板日志"
-    echo "./nezha.sh uninstall_dashboard        - 卸载管理面板"
+    echo "./nezha.sh                    - 显示管理菜单"
+    echo "./nezha.sh install            - 安装面板端"
+    echo "./nezha.sh modify_config      - 修改面板配置"
+    echo "./nezha.sh restart_and_update - 重启并更新面板"
+    echo "./nezha.sh show_log           - 查看面板日志"
+    echo "./nezha.sh uninstall          - 卸载管理面板"
     echo "--------------------------------------------------------"
 }
 
@@ -591,20 +591,20 @@ init
 
 if [ $# -gt 0 ]; then
     case $1 in
-        "install_dashboard")
-            install_dashboard 0
+        "install")
+            install 0
             ;;
-        "modify_dashboard_config")
-            modify_dashboard_config 0
+        "modify_config")
+            modify_config 0
             ;;
         "restart_and_update")
             restart_and_update 0
             ;;
-        "show_dashboard_log")
-            show_dashboard_log 0
+        "show_log")
+            show_log 0
             ;;
-        "uninstall_dashboard")
-            uninstall_dashboard 0
+        "uninstall")
+            uninstall 0
             ;;
         "update_script")
             update_script 0

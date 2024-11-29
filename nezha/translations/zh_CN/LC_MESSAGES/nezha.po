@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-29 19:59+0800\n"
-"PO-Revision-Date: 2024-11-29 20:00+0800\n"
+"POT-Creation-Date: 2024-11-29 21:03+0800\n"
+"PO-Revision-Date: 2024-11-29 21:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -106,106 +106,106 @@ msgstr "3s后执行新脚本"
 msgid "* Press Enter to return to the main menu *"
 msgstr "* 按回车返回主菜单 *"
 
-#: nezha/template.sh:265
+#: nezha/template.sh:262
 msgid "> Install"
 msgstr "> 安装"
 
-#: nezha/template.sh:271
+#: nezha/template.sh:268
 msgid ""
 "You may have already installed the dashboard, repeated installation will "
 "overwrite the data, please pay attention to backup."
 msgstr "您可能已经安装过面板端，重复安装会覆盖数据，请注意备份。"
 
-#: nezha/template.sh:272
+#: nezha/template.sh:269
 msgid "Exit the installation? [Y/n]"
 msgstr "是否退出安装? [Y/n]"
 
-#: nezha/template.sh:276 nezha/template.sh:284
+#: nezha/template.sh:273 nezha/template.sh:281
 msgid "Exit the installation"
 msgstr "退出安装"
 
-#: nezha/template.sh:280
+#: nezha/template.sh:277
 msgid "Continue"
 msgstr "继续安装"
 
-#: nezha/template.sh:298
+#: nezha/template.sh:295
 msgid "Modify Configuration"
 msgstr "> 修改配置"
 
-#: nezha/template.sh:302
+#: nezha/template.sh:299
 msgid "Download Docker Script"
 msgstr "正在下载 Docker 脚本"
 
-#: nezha/template.sh:305 nezha/template.sh:316
+#: nezha/template.sh:302 nezha/template.sh:313
 msgid ""
 "Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
 msgstr "脚本获取失败，请检查本机能否链接  ${GITHUB_RAW_URL}"
 
-#: nezha/template.sh:309
+#: nezha/template.sh:306
 msgid ""
 "Please install docker-compose manually. https://docs.docker.com/compose/"
 "install/linux/"
 msgstr ""
 "请手动安装 docker-compose。 https://docs.docker.com/compose/install/linux/"
 
-#: nezha/template.sh:321
+#: nezha/template.sh:318
 msgid "Please enter the site title: "
 msgstr "请输入站点标题: "
 
-#: nezha/template.sh:323
+#: nezha/template.sh:320
 msgid "Please enter the exposed port: (default 8008)"
 msgstr "请输入暴露端口: (默认 8008)"
 
-#: nezha/template.sh:325
+#: nezha/template.sh:322
 msgid "Please specify the backend locale"
 msgstr "请指定后台语言"
 
-#: nezha/template.sh:330
+#: nezha/template.sh:327
 msgid "Please enter [1-3]: "
 msgstr "请输入选项 [1-3]"
 
-#: nezha/template.sh:346
+#: nezha/template.sh:343
 msgid "Please enter the correct number [1-3]"
 msgstr "请输入正确的选项 [1-3]"
 
-#: nezha/template.sh:352
+#: nezha/template.sh:349
 msgid "All options cannot be empty"
 msgstr "\"所有选项都不能为空\""
 
-#: nezha/template.sh:376
+#: nezha/template.sh:373
 msgid "Downloading service file"
 msgstr "正在下载服务文件"
 
-#: nezha/template.sh:380 nezha/template.sh:386
+#: nezha/template.sh:377 nezha/template.sh:383
 msgid ""
 "File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
 msgstr "文件下载失败，请检查本机能否连接 ${GITHUB_RAW_URL}"
 
-#: nezha/template.sh:394
+#: nezha/template.sh:391
 msgid ""
 "Dashboard configuration modified successfully, please wait for Dashboard "
 "self-restart to take effect"
 msgstr "Dashboard 配置 修改成功，请稍等 Dashboard 重启生效"
 
-#: nezha/template.sh:404
+#: nezha/template.sh:401
 msgid "> Restart and Update"
 msgstr "> 重启并更新"
 
-#: nezha/template.sh:413
+#: nezha/template.sh:410
 msgid "Nezha Monitoring Restart Successful"
 msgstr "哪吒监控 重启成功"
 
-#: nezha/template.sh:414
+#: nezha/template.sh:411
 msgid "Default address: domain:site_access_port"
 msgstr "默认地址：域名:站点访问端口"
 
-#: nezha/template.sh:416
+#: nezha/template.sh:413
 msgid ""
 "The restart failed, probably because the boot time exceeded two seconds, "
 "please check the log information later"
 msgstr "重启失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
 
-#: nezha/template.sh:443
+#: nezha/template.sh:440
 msgid ""
 "Fail to obtain Dashboard version, please check if the network can link "
 "https://api.github.com/repos/nezhahq/nezha/releases/latest"
@@ -213,84 +213,83 @@ msgstr ""
 "获取 Dashboard 版本号失败，请检查本机能否链接 https://api.github.com/repos/"
 "nezhahq/nezha/releases/latest"
 
-#: nezha/template.sh:446
+#: nezha/template.sh:443
 msgid "The current latest version is: ${_version}"
 msgstr "当前最新版本为： ${_version}"
 
-#: nezha/template.sh:477
+#: nezha/template.sh:472
 msgid "> View Log"
 msgstr "> 获取日志"
 
-#: nezha/template.sh:503
+#: nezha/template.sh:498
 msgid "> Uninstall"
 msgstr "> 卸载"
 
-#: nezha/template.sh:550
+#: nezha/template.sh:537
 msgid "Nezha Monitor Management Script Usage: "
 msgstr "哪吒监控 管理脚本使用方法: "
 
-#: nezha/template.sh:552
-msgid "./nezha.sh                            - Show Menu"
-msgstr "./nezha.sh                            - 显示管理菜单"
+#: nezha/template.sh:539
+msgid "./nezha.sh                    - Show Menu"
+msgstr "./nezha.sh                    - 显示管理菜单"
 
-#: nezha/template.sh:553
-msgid "./nezha.sh install_dashboard          - Install Dashboard"
-msgstr "./nezha.sh install_dashboard          - 安装面板端"
+#: nezha/template.sh:540
+msgid "./nezha.sh install            - Install Dashboard"
+msgstr "./nezha.sh install            - 安装面板端"
 
-#: nezha/template.sh:554
-msgid "./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration"
-msgstr "./nezha.sh modify_dashboard_config    - 修改面板配置"
+#: nezha/template.sh:541
+msgid "./nezha.sh modify_config      - Modify Dashboard Configuration"
+msgstr "./nezha.sh modify_config      - 修改面板配置"
 
-#: nezha/template.sh:555
-msgid ""
-"./nezha.sh restart_and_update         - Restart and Update the Dashboard"
-msgstr "./nezha.sh restart_and_update         - 重启并更新面板"
+#: nezha/template.sh:542
+msgid "./nezha.sh restart_and_update - Restart and Update the Dashboard"
+msgstr "./nezha.sh restart_and_update - 重启并更新面板"
 
-#: nezha/template.sh:556
-msgid "./nezha.sh show_dashboard_log         - View Dashboard Log"
-msgstr "./nezha.sh show_dashboard_log         - 查看面板日志"
+#: nezha/template.sh:543
+msgid "./nezha.sh show_log           - View Dashboard Log"
+msgstr "./nezha.sh show_log           - 查看面板日志"
 
-#: nezha/template.sh:557
-msgid "./nezha.sh uninstall_dashboard        - Uninstall Dashboard"
-msgstr "./nezha.sh uninstall_dashboard        - 卸载管理面板"
+#: nezha/template.sh:544
+msgid "./nezha.sh uninstall          - Uninstall Dashboard"
+msgstr "./nezha.sh uninstall          - 卸载管理面板"
 
-#: nezha/template.sh:562
+#: nezha/template.sh:549
 msgid "${green}Nezha Monitor Management Script${plain}"
 msgstr "${green}哪吒监控管理脚本${plain}"
 
-#: nezha/template.sh:564
+#: nezha/template.sh:551
 msgid "${green}1.${plain}  Install Dashboard"
 msgstr "${green}1.${plain}  安装面板端"
 
-#: nezha/template.sh:565
+#: nezha/template.sh:552
 msgid "${green}2.${plain}  Modify Dashboard Configuration"
 msgstr "${green}2.${plain}  修改面板配置"
 
-#: nezha/template.sh:566
+#: nezha/template.sh:553
 msgid "${green}3.${plain}  Restart and Update Dashboard"
 msgstr "${green}3.${plain}  重启并更新面板"
 
-#: nezha/template.sh:567
+#: nezha/template.sh:554
 msgid "${green}4.${plain}  View Dashboard Log"
 msgstr "${green}4.${plain}  查看面板日志"
 
-#: nezha/template.sh:568
+#: nezha/template.sh:555
 msgid "${green}5.${plain}  Uninstall Dashboard"
 msgstr "${green}5.${plain}  卸载管理面板"
 
-#: nezha/template.sh:570
+#: nezha/template.sh:557
 msgid "${green}6.${plain}  Update Script"
 msgstr "${green}6.${plain}  更新脚本"
 
-#: nezha/template.sh:572
+#: nezha/template.sh:559
 msgid "${green}0.${plain}  Exit Script"
 msgstr "${green}0.${plain}  退出脚本"
 
-#: nezha/template.sh:574
+#: nezha/template.sh:561
 msgid "Please enter [0-6]: "
 msgstr "请输入选择 [0-6]: "
 
-#: nezha/template.sh:598
+#: nezha/template.sh:585
 msgid "Please enter the correct number [0-6]"
 msgstr "请输入正确的数字 [0-6]"
 
