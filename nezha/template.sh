@@ -231,7 +231,7 @@ init() {
         if [ -z "$CN" ]; then
             GITHUB_RAW_URL="raw.githubusercontent.com/nezhahq/scripts/main"
             GITHUB_URL="github.com"
-            Docker_IMG="ghcr.io\/naiba\/nezha-dashboard"
+            Docker_IMG="ghcr.io\/nezhahq\/nezha"
         else
             GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
             GITHUB_URL="gitee.com"
@@ -259,9 +259,6 @@ before_show_menu() {
 }
 
 install() {
-    check_systemd
-    install_base
-
     echo _("> Install")
 
     # Nezha Monitoring Folder
@@ -362,7 +359,7 @@ modify_config() {
     sed -i "s/nz_language/${nz_lang}/" /tmp/nezha-config.yaml
     sed -i "s/nz_site_title/${nz_site_title}/" /tmp/nezha-config.yaml
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
-        sed -i "s/nz_port/${nz_port}/" /tmp/nezha-docker-compose.yaml
+        sed -i "s/nz_port/${nz_port}/g" /tmp/nezha-docker-compose.yaml
         sed -i "s/nz_image_url/${Docker_IMG}/" /tmp/nezha-docker-compose.yaml
     fi
 
@@ -469,8 +466,6 @@ restart_and_update_standalone() {
         sudo rc-update add nezha-dashboard
         sudo rc-service nezha-dashboard restart
     fi
-
-    find "$NZ_DASHBOARD_PATH" -type d -exec chmod 700 {} \;
 }
 
 show_log() {
@@ -508,8 +503,6 @@ uninstall() {
         uninstall_dashboard_standalone
     fi
 
-    clean_all
-
     if [ $# = 0 ]; then
         before_show_menu
     fi
@@ -518,7 +511,7 @@ uninstall() {
 uninstall_dashboard_docker() {
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
     sudo rm -rf $NZ_DASHBOARD_PATH
-    sudo docker rmi -f ghcr.io/naiba/nezha-dashboard >/dev/null 2>&1
+    sudo docker rmi -f ghcr.io/nezhahq/nezha >/dev/null 2>&1
     sudo docker rmi -f registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard >/dev/null 2>&1
 }
 
@@ -537,12 +530,6 @@ uninstall_dashboard_standalone() {
         sudo rm $NZ_DASHBOARD_SERVICE
     elif [ "$INIT" = "openrc" ]; then
         sudo rm $NZ_DASHBOARD_SERVICERC
-    fi
-}
-
-clean_all() {
-    if [ -z "$(ls -A ${NZ_DASHBOARD_PATH})" ]; then
-        sudo rm -rf ${NZ_DASHBOARD_PATH}
     fi
 }
 
