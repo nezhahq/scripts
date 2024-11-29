@@ -1,0 +1,310 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-29 19:59+0800\n"
+"PO-Revision-Date: 2024-11-29 19:59+0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: nezha/template.sh:35
+msgid ""
+"ERROR: sudo is not installed on the system, the action cannot be proceeded."
+msgstr ""
+"ERROR: sudo is not installed on the system, the action cannot be proceeded."
+
+#: nezha/template.sh:47
+msgid "Run '$*' failed."
+msgstr "Run '$*' failed."
+
+#: nezha/template.sh:57
+msgid "$dep not found, please install it first."
+msgstr "$dep not found, please install it first."
+
+#: nezha/template.sh:117
+msgid "Unknown architecture: $uname"
+msgstr "Unknown architecture: $uname"
+
+#: nezha/template.sh:130 nezha/template.sh:144
+msgid "Docker image with nezha-dashboard repository exists:"
+msgstr "Docker image with nezha-dashboard repository exists:"
+
+#: nezha/template.sh:136 nezha/template.sh:150
+msgid "No Docker images with the nezha-dashboard repository were found."
+msgstr "No Docker images with the nezha-dashboard repository were found."
+
+#: nezha/template.sh:163
+msgid "Select your installation method:"
+msgstr "Select your installation method:"
+
+#: nezha/template.sh:165
+msgid "2. Standalone"
+msgstr "2. Standalone"
+
+#: nezha/template.sh:167
+msgid "Please enter [1-2]: "
+msgstr "Please enter [1-2]: "
+
+#: nezha/template.sh:179
+msgid "Please enter the correct number [1-2]"
+msgstr "Please enter the correct number [1-2]"
+
+#: nezha/template.sh:196
+msgid ""
+"According to the information provided by various geoip api, the current IP "
+"may be in China"
+msgstr ""
+"According to the information provided by various geoip api, the current IP "
+"may be in China"
+
+#: nezha/template.sh:197
+msgid ""
+"Will the installation be done with a Chinese Mirror? [Y/n] (Custom Mirror "
+"Input 3): "
+msgstr ""
+"Will the installation be done with a Chinese Mirror? [Y/n] (Custom Mirror "
+"Input 3): "
+
+#: nezha/template.sh:201
+msgid "Use Chinese Mirror"
+msgstr "Use Chinese Mirror"
+
+#: nezha/template.sh:206 nezha/template.sh:220
+msgid "Do Not Use Chinese Mirror"
+msgstr "Do Not Use Chinese Mirror"
+
+#: nezha/template.sh:210
+msgid "Use Custom Mirror"
+msgstr "Use Custom Mirror"
+
+#: nezha/template.sh:211
+msgid ""
+"Please enter a custom image (e.g. :dn-dao-github-mirror.daocloud.io). If "
+"left blank, it won't be used: "
+msgstr ""
+"Please enter a custom image (e.g. :dn-dao-github-mirror.daocloud.io). If "
+"left blank, it won't be used: "
+
+#: nezha/template.sh:244
+msgid "> Update Script"
+msgstr "> Update Script"
+
+#: nezha/template.sh:246
+msgid "https://${GITHUB_RAW_URL}/install_en.sh"
+msgstr "https://${GITHUB_RAW_URL}/install_en.sh"
+
+#: nezha/template.sh:249
+msgid "Execute new script after 3s"
+msgstr "Execute new script after 3s"
+
+#: nezha/template.sh:257
+msgid "* Press Enter to return to the main menu *"
+msgstr "* Press Enter to return to the main menu *"
+
+#: nezha/template.sh:265
+msgid "> Install"
+msgstr "> Install"
+
+#: nezha/template.sh:271
+msgid ""
+"You may have already installed the dashboard, repeated installation will "
+"overwrite the data, please pay attention to backup."
+msgstr ""
+"You may have already installed the dashboard, repeated installation will "
+"overwrite the data, please pay attention to backup."
+
+#: nezha/template.sh:272
+msgid "Exit the installation? [Y/n]"
+msgstr "Exit the installation? [Y/n]"
+
+#: nezha/template.sh:276 nezha/template.sh:284
+msgid "Exit the installation"
+msgstr "Exit the installation"
+
+#: nezha/template.sh:280
+msgid "Continue"
+msgstr "Continue"
+
+#: nezha/template.sh:298
+msgid "Modify Configuration"
+msgstr "Modify Configuration"
+
+#: nezha/template.sh:302
+msgid "Download Docker Script"
+msgstr "Download Docker Script"
+
+#: nezha/template.sh:305 nezha/template.sh:316
+msgid ""
+"Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+msgstr ""
+"Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+
+#: nezha/template.sh:309
+msgid ""
+"Please install docker-compose manually. https://docs.docker.com/compose/"
+"install/linux/"
+msgstr ""
+"Please install docker-compose manually. https://docs.docker.com/compose/"
+"install/linux/"
+
+#: nezha/template.sh:321
+msgid "Please enter the site title: "
+msgstr "Please enter the site title: "
+
+#: nezha/template.sh:323
+msgid "Please enter the exposed port: (default 8008)"
+msgstr "Please enter the exposed port: (default 8008)"
+
+#: nezha/template.sh:325
+msgid "Please specify the backend locale"
+msgstr "Please specify the backend locale"
+
+#: nezha/template.sh:330
+msgid "Please enter [1-3]: "
+msgstr "Please enter [1-3]: "
+
+#: nezha/template.sh:346
+msgid "Please enter the correct number [1-3]"
+msgstr "Please enter the correct number [1-3]"
+
+#: nezha/template.sh:352
+msgid "All options cannot be empty"
+msgstr "All options cannot be empty"
+
+#: nezha/template.sh:376
+msgid "Downloading service file"
+msgstr "Downloading service file"
+
+#: nezha/template.sh:380 nezha/template.sh:386
+msgid ""
+"File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+msgstr ""
+"File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+
+#: nezha/template.sh:394
+msgid ""
+"Dashboard configuration modified successfully, please wait for Dashboard "
+"self-restart to take effect"
+msgstr ""
+"Dashboard configuration modified successfully, please wait for Dashboard "
+"self-restart to take effect"
+
+#: nezha/template.sh:404
+msgid "> Restart and Update"
+msgstr "> Restart and Update"
+
+#: nezha/template.sh:413
+msgid "Nezha Monitoring Restart Successful"
+msgstr "Nezha Monitoring Restart Successful"
+
+#: nezha/template.sh:414
+msgid "Default address: domain:site_access_port"
+msgstr "Default address: domain:site_access_port"
+
+#: nezha/template.sh:416
+msgid ""
+"The restart failed, probably because the boot time exceeded two seconds, "
+"please check the log information later"
+msgstr ""
+"The restart failed, probably because the boot time exceeded two seconds, "
+"please check the log information later"
+
+#: nezha/template.sh:443
+msgid ""
+"Fail to obtain Dashboard version, please check if the network can link "
+"https://api.github.com/repos/nezhahq/nezha/releases/latest"
+msgstr ""
+"Fail to obtain Dashboard version, please check if the network can link "
+"https://api.github.com/repos/nezhahq/nezha/releases/latest"
+
+#: nezha/template.sh:446
+msgid "The current latest version is: ${_version}"
+msgstr "The current latest version is: ${_version}"
+
+#: nezha/template.sh:477
+msgid "> View Log"
+msgstr "> View Log"
+
+#: nezha/template.sh:503
+msgid "> Uninstall"
+msgstr "> Uninstall"
+
+#: nezha/template.sh:550
+msgid "Nezha Monitor Management Script Usage: "
+msgstr "Nezha Monitor Management Script Usage: "
+
+#: nezha/template.sh:552
+msgid "./nezha.sh                            - Show Menu"
+msgstr "./nezha.sh                            - Show Menu"
+
+#: nezha/template.sh:553
+msgid "./nezha.sh install_dashboard          - Install Dashboard"
+msgstr "./nezha.sh install_dashboard          - Install Dashboard"
+
+#: nezha/template.sh:554
+msgid "./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration"
+msgstr "./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration"
+
+#: nezha/template.sh:555
+msgid ""
+"./nezha.sh restart_and_update         - Restart and Update the Dashboard"
+msgstr ""
+"./nezha.sh restart_and_update         - Restart and Update the Dashboard"
+
+#: nezha/template.sh:556
+msgid "./nezha.sh show_dashboard_log         - View Dashboard Log"
+msgstr "./nezha.sh show_dashboard_log         - View Dashboard Log"
+
+#: nezha/template.sh:557
+msgid "./nezha.sh uninstall_dashboard        - Uninstall Dashboard"
+msgstr "./nezha.sh uninstall_dashboard        - Uninstall Dashboard"
+
+#: nezha/template.sh:562
+msgid "${green}Nezha Monitor Management Script${plain}"
+msgstr "${green}Nezha Monitor Management Script${plain}"
+
+#: nezha/template.sh:564
+msgid "${green}1.${plain}  Install Dashboard"
+msgstr "${green}1.${plain}  Install Dashboard"
+
+#: nezha/template.sh:565
+msgid "${green}2.${plain}  Modify Dashboard Configuration"
+msgstr "${green}2.${plain}  Modify Dashboard Configuration"
+
+#: nezha/template.sh:566
+msgid "${green}3.${plain}  Restart and Update Dashboard"
+msgstr "${green}3.${plain}  Restart and Update Dashboard"
+
+#: nezha/template.sh:567
+msgid "${green}4.${plain}  View Dashboard Log"
+msgstr "${green}4.${plain}  View Dashboard Log"
+
+#: nezha/template.sh:568
+msgid "${green}5.${plain}  Uninstall Dashboard"
+msgstr "${green}5.${plain}  Uninstall Dashboard"
+
+#: nezha/template.sh:570
+msgid "${green}6.${plain}  Update Script"
+msgstr "${green}6.${plain}  Update Script"
+
+#: nezha/template.sh:572
+msgid "${green}0.${plain}  Exit Script"
+msgstr "${green}0.${plain}  Exit Script"
+
+#: nezha/template.sh:574
+msgid "Please enter [0-6]: "
+msgstr "Please enter [0-6]: "
+
+#: nezha/template.sh:598
+msgid "Please enter the correct number [0-6]"
+msgstr "Please enter the correct number [0-6]"

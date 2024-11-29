@@ -1,10 +1,13 @@
 package main
 
 import (
-	"encoding/json"
+	"bufio"
 	"fmt"
 	"os"
-	"text/template"
+	"regexp"
+	"strings"
+
+	"github.com/chai2010/gettext-go"
 )
 
 const (
@@ -12,17 +15,13 @@ const (
 	en_US = "en_US"
 )
 
-var localeMap map[string]map[string]interface{}
-
 func main() {
 	if len(os.Args) != 3 {
 		printUsage()
 		exitWithError("Error: Need exactly 2 arguments")
 	}
 
-	if err := readLocalesFromFile(os.Args[1]); err != nil {
-		exitWithError(fmt.Sprintf("readLocalesFromFile: %v", err))
-	}
+	readLocalesFromDir(os.Args[1])
 
 	if err := parseTemplate(os.Args[2]); err != nil {
 		exitWithError(fmt.Sprintf("parseTemplate: %v", err))
@@ -30,7 +29,7 @@ func main() {
 }
 
 func printUsage() {
-	fmt.Printf("usage: %s [locale-file] [locale]\n", os.Args[0])
+	fmt.Printf("usage: %s [localedir] [locale]\n", os.Args[0])
 }
 
 func exitWithError(message string) {
@@ -38,37 +37,64 @@ func exitWithError(message string) {
 	os.Exit(1)
 }
 
-func readLocalesFromFile(file string) error {
-	b, err := os.ReadFile(file)
-	if err != nil {
-		return err
-	}
-
-	return json.Unmarshal(b, &localeMap)
+func readLocalesFromDir(dir string) {
+	gettext.BindLocale(gettext.New("nezha", dir))
 }
 
 func parseTemplate(lang string) error {
-	tmpl, err := template.ParseFiles("template.sh")
+	gettext.SetLanguage(lang)
+	regex := regexp.MustCompile(`_\("([^"]+)"\)`)
+
+	var file *os.File
+	var err error
+	switch lang {
+	case zh_CN:
+		file, err = os.Create("install.sh")
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+	case en_US:
+		file, err = os.Create("install_en.sh")
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+	default:
+		return fmt.Errorf("unsupported locale: %s", lang)
+	}
+
+	template, err := os.Open("nezha/template.sh")
 	if err != nil {
 		return err
 	}
 
-	switch lang {
-	case zh_CN:
-		file, err := os.Create("install.sh")
+	var newline string
+	scanner := bufio.NewScanner(template)
+	buf := make([]byte, 1024*1024)
+	scanner.Buffer(buf, len(buf))
+
+	writer := bufio.NewWriter(file)
+	defer writer.Flush()
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		matches := regex.FindAllStringSubmatch(line, -1)
+
+		if len(matches) > 0 {
+			orig := matches[0][0]
+			translated := fmt.Sprintf("\"%s\"", gettext.PGettext("", matches[0][1]))
+			newline = strings.ReplaceAll(line, orig, translated)
+		} else {
+			newline = line
+		}
+
+		_, err := writer.WriteString(fmt.Sprintln(newline))
 		if err != nil {
+			fmt.Println("Error writing to file:", err)
 			return err
 		}
-		defer file.Close()
-		return tmpl.Execute(file, localeMap[zh_CN])
-	case en_US:
-		file, err := os.Create("install_en.sh")
-		if err != nil {
-			return err
-		}
-		defer file.Close()
-		return tmpl.Execute(file, localeMap[en_US])
-	default:
-		return fmt.Errorf("unsupported locale: %s", lang)
 	}
+
+	return nil
 }

@@ -32,7 +32,7 @@ sudo() {
         if command -v sudo > /dev/null 2>&1; then
             command sudo "$@"
         else
-            err "ERROR: sudo is not installed on the system, the action cannot be proceeded."
+            err _("ERROR: sudo is not installed on the system, the action cannot be proceeded.")
             exit 1
         fi
     else
@@ -44,7 +44,7 @@ mustn() {
     set -- "$@"
     
     if ! "$@" >/dev/null 2>&1; then
-        err "Run '$*' failed."
+        err _("Run '$*' failed.")
         exit 1
     fi
 }
@@ -54,7 +54,7 @@ deps_check() {
     set -- "$api_list"
     for dep in $deps; do
         if ! command -v "$dep" >/dev/null 2>&1; then
-            err "$dep not found, please install it first."
+            err _("$dep not found, please install it first.")
             exit 1
         fi
     done
@@ -114,7 +114,7 @@ env_check() {
             os_arch="riscv64"
             ;;
         *)
-            err "Unknown architecture: $uname"
+            err _("Unknown architecture: $uname")
             exit 1
             ;;
     esac
@@ -127,13 +127,13 @@ installation_check() {
         if sudo $DOCKER_COMPOSE_COMMAND ls | grep -qw "$NZ_DASHBOARD_PATH/docker-compose.yaml" >/dev/null 2>&1; then
             NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezha-dashboard")
             if [ -n "$NEZHA_IMAGES" ]; then
-                echo "Docker image with nezha-dashboard repository exists:"
+                echo _("Docker image with nezha-dashboard repository exists:")
                 echo "$NEZHA_IMAGES"
                 IS_DOCKER_NEZHA=1
                 FRESH_INSTALL=0
                 return
             else
-                echo "No Docker images with the nezha-dashboard repository were found."
+                echo _("No Docker images with the nezha-dashboard repository were found.")
             fi
         fi
     elif command -v docker-compose >/dev/null 2>&1; then
@@ -141,13 +141,13 @@ installation_check() {
         if sudo $DOCKER_COMPOSE_COMMAND -f "$NZ_DASHBOARD_PATH/docker-compose.yaml" config >/dev/null 2>&1; then
             NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezha-dashboard")
             if [ -n "$NEZHA_IMAGES" ]; then
-                echo "Docker image with nezha-dashboard repository exists:"
+                echo _("Docker image with nezha-dashboard repository exists:")
                 echo "$NEZHA_IMAGES"
                 IS_DOCKER_NEZHA=1
                 FRESH_INSTALL=0
                 return
             else
-                echo "No Docker images with the nezha-dashboard repository were found."
+                echo _("No Docker images with the nezha-dashboard repository were found.")
             fi
         fi
     fi
@@ -160,11 +160,11 @@ installation_check() {
 
 select_version() {
     if [ -z "$IS_DOCKER_NEZHA" ]; then
-        info "Select your installation method:"
+        info _("Select your installation method:")
         info "1. Docker"
-        info "2. Standalone"
+        info _("2. Standalone")
         while true; do
-            printf "Please enter [1-2]: "
+            printf _("Please enter [1-2]: ")
             read -r option
             case "${option}" in
                 1)
@@ -176,7 +176,7 @@ select_version() {
                     break
                     ;;
                 *)
-                    err "Please enter the correct number [1-2]"
+                    err _("Please enter the correct number [1-2]")
                     ;;
             esac
         done
@@ -193,22 +193,22 @@ init() {
     if [ -z "$CN" ]; then
         geo_check
         if [ -n "$isCN" ]; then
-            echo "According to the information provided by various geoip api, the current IP may be in China"
-            printf "Will the installation be done with a Chinese Mirror? [Y/n] (Custom Mirror Input 3): "
+            echo _("According to the information provided by various geoip api, the current IP may be in China")
+            printf _("Will the installation be done with a Chinese Mirror? [Y/n] (Custom Mirror Input 3): ")
             read -r input
             case $input in
             [yY][eE][sS] | [yY])
-                echo "Use Chinese Mirror"
+                echo _("Use Chinese Mirror")
                 CN=true
                 ;;
 
             [nN][oO] | [nN])
-                echo "Do Not Use Chinese Mirror"
+                echo _("Do Not Use Chinese Mirror")
                 ;;
 
             [3])
-                echo "Use Custom Mirror"
-                printf "Please enter a custom image (e.g. :dn-dao-github-mirror.daocloud.io). If left blank, it won't be used: "
+                echo _("Use Custom Mirror")
+                printf _("Please enter a custom image (e.g. :dn-dao-github-mirror.daocloud.io). If left blank, it won't be used: ")
                 read -r input
                 case $input in
                 *)
@@ -217,7 +217,7 @@ init() {
                 esac
                 ;;
             *)
-                echo "Do Not Use Chinese Mirror"
+                echo _("Do Not Use Chinese Mirror")
                 ;;
             esac
         fi
@@ -241,12 +241,12 @@ init() {
 }
 
 update_script() {
-    echo "> Update Script"
+    echo _("> Update Script")
 
-    curl -sL "https://${GITHUB_RAW_URL}/install_en.sh" -o /tmp/nezha.sh
+    curl -sL _("https://${GITHUB_RAW_URL}/install_en.sh") -o /tmp/nezha.sh
     mv -f /tmp/nezha.sh ./nezha.sh && chmod a+x ./nezha.sh
 
-    echo "Execute new script after 3s"
+    echo _("Execute new script after 3s")
     sleep 3s
     clear
     exec ./nezha.sh
@@ -254,7 +254,7 @@ update_script() {
 }
 
 before_show_menu() {
-    echo && info "* Press Enter to return to the main menu *" && read temp
+    echo && info _("* Press Enter to return to the main menu *") && read temp
     show_menu
 }
 
@@ -262,26 +262,26 @@ install() {
     check_systemd
     install_base
 
-    echo "> Install"
+    echo _("> Install")
 
     # Nezha Monitoring Folder
     if [ ! "$FRESH_INSTALL" = 0 ]; then
         sudo mkdir -p $NZ_DASHBOARD_PATH
     else
-        echo "You may have already installed the dashboard, repeated installation will overwrite the data, please pay attention to backup."
-        printf "Exit the installation? [Y/n]"
+        echo _("You may have already installed the dashboard, repeated installation will overwrite the data, please pay attention to backup.")
+        printf _("Exit the installation? [Y/n]")
         read -r input
         case $input in
         [yY][eE][sS] | [yY])
-            echo "Exit the installation"
+            echo _("Exit the installation")
             exit 0
             ;;
         [nN][oO] | [nN])
-            echo "Continue"
+            echo _("Continue")
             exit 0
             ;;
         *)
-            echo "Exit the installation"
+            echo _("Exit the installation")
             exit 0
             ;;
         esac
@@ -295,39 +295,39 @@ install() {
 }
 
 modify_config() {
-    echo "Modify Configuration"
+    echo _("Modify Configuration")
 
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         if [ -n "$DOCKER_COMPOSE_COMMAND" ]; then
-            echo "Download Docker Script"
+            echo _("Download Docker Script")
             _cmd="wget -t 2 -T 60 -O /tmp/nezha-docker-compose.yaml https://${GITHUB_RAW_URL}/extras/docker-compose.yaml >/dev/null 2>&1"
             if ! eval "$_cmd"; then
-                err "Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+                err _("Script failed to get, please check if the network can link ${GITHUB_RAW_URL}")
                 return 0
             fi
         else
-            err "Please install docker-compose manually. https://docs.docker.com/compose/install/linux/"
+            err _("Please install docker-compose manually. https://docs.docker.com/compose/install/linux/")
             before_show_menu
         fi
     fi
 
     _cmd="wget -t 2 -T 60 -O /tmp/nezha-config.yaml https://${GITHUB_RAW_URL}/extras/config.yaml >/dev/null 2>&1"
     if ! eval "$_cmd"; then
-        err "Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+        err _("Script failed to get, please check if the network can link ${GITHUB_RAW_URL}")
         return 0
     fi
 
 
-    printf "Please enter the site title: "
+    printf _("Please enter the site title: ")
     read -r nz_site_title
-    printf "Please enter the exposed port: (default 8008)"
+    printf _("Please enter the exposed port: (default 8008)")
     read -r nz_port
-    info "Please specify the backend locale"
+    info _("Please specify the backend locale")
     info "1. 中文（简体）"
     info "2. 中文（台灣）"
     info "3. English"
     while true; do
-        printf "Please enter [1-3]: "
+        printf _("Please enter [1-3]: ")
         read -r option
         case "${option}" in
             1)
@@ -343,13 +343,13 @@ modify_config() {
                 break
                 ;;
             *)
-                err "Please enter the correct number [1-3]"
+                err _("Please enter the correct number [1-3]")
                 ;;
         esac
     done
 
     if [ -z "$nz_lang" ] || [ -z "$nz_site_title" ]; then
-        err "All options cannot be empty"
+        err _("All options cannot be empty")
         before_show_menu
         return 1
     fi
@@ -373,17 +373,17 @@ modify_config() {
     fi
 
     if [ "$IS_DOCKER_NEZHA" = 0 ]; then
-        echo "Downloading service file"
+        echo _("Downloading service file")
         if [ "$INIT" = "systemd" ]; then
             _download="sudo wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICE https://${GITHUB_RAW_URL}/services/nezha-dashboard.service >/dev/null 2>&1"
             if ! eval "$_download"; then
-                err "File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+                err _("File failed to get, please check if the network can link ${GITHUB_RAW_URL}")
                 return 0
             fi
         elif [ "$INIT" = "openrc" ]; then
             _download="sudo wget -t 2 -T 60 -O $NZ_DASHBOARD_SERVICERC https://${GITHUB_RAW_URL}/services/nezha-dashboard >/dev/null 2>&1"
             if ! eval "$_download"; then
-                err "File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
+                err _("File failed to get, please check if the network can link ${GITHUB_RAW_URL}")
                 return 0
             fi
             sudo chmod +x $NZ_DASHBOARD_SERVICERC
@@ -391,7 +391,7 @@ modify_config() {
     fi
 
 
-    success "Dashboard configuration modified successfully, please wait for Dashboard self-restart to take effect"
+    success _("Dashboard configuration modified successfully, please wait for Dashboard self-restart to take effect")
 
     restart_and_update
 
@@ -401,7 +401,7 @@ modify_config() {
 }
 
 restart_and_update() {
-    echo "> Restart and Update"
+    echo _("> Restart and Update")
 
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         _cmd="restart_and_update_docker"
@@ -410,10 +410,10 @@ restart_and_update() {
     fi
 
     if eval "$_cmd"; then
-        success "Nezha Monitoring Restart Successful"
-        info "Default address: domain:site_access_port"
+        success _("Nezha Monitoring Restart Successful")
+        info _("Default address: domain:site_access_port")
     else
-        err "The restart failed, probably because the boot time exceeded two seconds, please check the log information later"
+        err _("The restart failed, probably because the boot time exceeded two seconds, please check the log information later")
     fi
 
     if [ $# = 0 ]; then
@@ -440,10 +440,10 @@ restart_and_update_standalone() {
     fi
 
     if [ -z "$_version" ]; then
-        err "Fail to obtain Dashboard version, please check if the network can link https://api.github.com/repos/nezhahq/nezha/releases/latest"
+        err _("Fail to obtain Dashboard version, please check if the network can link https://api.github.com/repos/nezhahq/nezha/releases/latest")
         return 1
     else
-        echo "The current latest version is: ${_version}"
+        echo _("The current latest version is: ${_version}")
     fi
 
     if [ "$INIT" = "systemd" ]; then
@@ -474,7 +474,7 @@ restart_and_update_standalone() {
 }
 
 show_log() {
-    echo "> View Log"
+    echo _("> View Log")
 
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         show_dashboard_log_docker
@@ -500,7 +500,7 @@ show_dashboard_log_standalone() {
 }
 
 uninstall() {
-    echo "> Uninstall"
+    echo _("> Uninstall")
 
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         uninstall_dashboard_docker
@@ -547,31 +547,31 @@ clean_all() {
 }
 
 show_usage() {
-    echo "Nezha Monitor Management Script Usage: "
+    echo _("Nezha Monitor Management Script Usage: ")
     echo "--------------------------------------------------------"
-    echo "./nezha.sh                            - Show Menu"
-    echo "./nezha.sh install_dashboard          - Install Dashboard"
-    echo "./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration"
-    echo "./nezha.sh restart_and_update         - Restart and Update the Dashboard"
-    echo "./nezha.sh show_dashboard_log         - View Dashboard Log"
-    echo "./nezha.sh uninstall_dashboard        - Uninstall Dashboard"
+    echo _("./nezha.sh                            - Show Menu")
+    echo _("./nezha.sh install_dashboard          - Install Dashboard")
+    echo _("./nezha.sh modify_dashboard_config    - Modify Dashboard Configuration")
+    echo _("./nezha.sh restart_and_update         - Restart and Update the Dashboard")
+    echo _("./nezha.sh show_dashboard_log         - View Dashboard Log")
+    echo _("./nezha.sh uninstall_dashboard        - Uninstall Dashboard")
     echo "--------------------------------------------------------"
 }
 
 show_menu() {
-    println "${green}Nezha Monitor Management Script${plain}"
+    println _("${green}Nezha Monitor Management Script${plain}")
     echo "--- https://github.com/nezhahq/nezha ---"
-    println "${green}1.${plain}  Install Dashboard"
-    println "${green}2.${plain}  Modify Dashboard Configuration"
-    println "${green}3.${plain}  Restart and Update Dashboard"
-    println "${green}4.${plain}  View Dashboard Log"
-    println "${green}5.${plain}  Uninstall Dashboard"
+    println _("${green}1.${plain}  Install Dashboard")
+    println _("${green}2.${plain}  Modify Dashboard Configuration")
+    println _("${green}3.${plain}  Restart and Update Dashboard")
+    println _("${green}4.${plain}  View Dashboard Log")
+    println _("${green}5.${plain}  Uninstall Dashboard")
     echo "————————————————-"
-    println "${green}6.${plain}  Update Script"
+    println _("${green}6.${plain}  Update Script")
     echo "————————————————-"
-    println "${green}0.${plain}  Exit Script"
+    println _("${green}0.${plain}  Exit Script")
 
-    echo && printf "Please enter [0-6]: " && read -r num
+    echo && printf _("Please enter [0-6]: ") && read -r num
     case "${num}" in
         0)
             exit 0
@@ -595,7 +595,7 @@ show_menu() {
             update_script
             ;;
         *)
-            err "Please enter the correct number [0-6]"
+            err _("Please enter the correct number [0-6]")
             ;;
     esac
 }
