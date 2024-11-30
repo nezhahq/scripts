@@ -275,7 +275,6 @@ install() {
             ;;
         [nN][oO] | [nN])
             echo "继续安装"
-            exit 0
             ;;
         *)
             echo "退出安装"
