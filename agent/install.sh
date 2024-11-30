@@ -130,9 +130,10 @@ install() {
     echo "Installing..."
 
     if [ -z "$CN" ]; then
-        NZ_AGENT_URL="https://${GITHUB_URL}/nezhahq/agent/releases/latest/download/nezha-agent_linux_${os_arch}.zip"
+        NZ_AGENT_URL="https://${GITHUB_URL}/nezhahq/agent/releases/latest/download/nezha-agent_${os}_${os_arch}.zip"
     else
-        NZ_AGENT_URL="https://${GITHUB_URL}/naibahq/agent/releases/latest/download/nezha-agent_linux_${os_arch}.zip"
+        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/naibahq/agent/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+        NZ_AGENT_URL="https://${GITHUB_URL}/naibahq/agent/releases/download/${_version}/nezha-agent_${os}_${os_arch}.zip"
     fi
 
     _cmd="wget -t 2 -T 60 -O /tmp/nezha-agent_${os}_${os_arch}.zip $NZ_AGENT_URL >/dev/null 2>&1"
