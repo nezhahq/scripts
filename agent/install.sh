@@ -59,7 +59,7 @@ geo_check() {
 env_check() {
     mach=$(uname -m)
     case "$mach" in
-        amd64)
+        amd64|x86_64)
             os_arch="amd64"
             ;;
         i386|i686)
