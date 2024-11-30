@@ -141,6 +141,8 @@ install() {
         exit 1
     fi
 
+    sudo mkdir -p $NZ_AGENT_PATH
+
     sudo unzip -qo /tmp/nezha-agent_${os}_${os_arch}.zip -d $NZ_AGENT_PATH &&
         sudo rm -rf /tmp/nezha-agent_${os}_${os_arch}.zip
 
