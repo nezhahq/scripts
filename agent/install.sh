@@ -153,12 +153,23 @@ install() {
         path=$(printf "%s" "$NZ_AGENT_PATH/config-$random.yml")
     fi
 
+    if [ -z "$NZ_SERVER" ]; then
+        err "NZ_SERVER should not be empty"
+        exit 1
+    fi
+
+    if [ -z "$NZ_CLIENT_SECRET" ]; then
+        err "NZ_CLIENT_SECRET should not be empty"
+        exit 1
+    fi
+
     env="NZ_SERVER=$NZ_SERVER NZ_CLIENT_SECRET=$NZ_CLIENT_SECRET NZ_TLS=$NZ_TLS NZ_DISABLE_AUTO_UPDATE=$NZ_DISABLE_AUTO_UPDATE NZ_DISABLE_FORCE_UPDATE=$DISABLE_FORCE_UPDATE NZ_DISABLE_COMMAND_EXECUTE=$NZ_DISABLE_COMMAND_EXECUTE NZ_SKIP_CONNECTION_COUNT=$NZ_SKIP_CONNECTION_COUNT"
 
     sudo "${NZ_AGENT_PATH}"/nezha-agent service -c "$path" uninstall >/dev/null 2>&1
     _cmd="sudo env $env $NZ_AGENT_PATH/nezha-agent service -c $path install"
     if ! eval "$_cmd"; then
         err "Install nezha-agent service failed"
+        sudo "${NZ_AGENT_PATH}"/nezha-agent service -c "$path" uninstall >/dev/null 2>&1
         exit 1
     fi
 
