@@ -253,6 +253,23 @@ update_script() {
     exit 0
 }
 
+install_agent_v0() {
+    shell_url="https://raw.githubusercontent.com/nezhahq/scripts/refs/heads/v0/install.sh"
+    file_name="nezha_v0.sh"
+    if command -v wget >/dev/null 2>&1; then
+        wget -O "/tmp/install_v0.sh" "$shell_url"
+    elif command -v curl >/dev/null 2>&1; then
+        curl -o "/tmp/install_v0.sh" "$shell_url"
+    fi
+    chmod a+x /tmp/install_v0.sh
+    mv -f /tmp/install_v0.sh ./nezha_v0.sh
+    echo "3s后执行新脚本"
+    sleep 3s
+    clear
+    exec ./nezha_v0.sh "$@"
+    exit 0
+}
+
 before_show_menu() {
     echo && info "* 按回车返回主菜单 *" && read temp
     show_menu
@@ -607,6 +624,9 @@ if [ $# -gt 0 ]; then
             ;;
         "update_script")
             update_script 0
+            ;;
+        "install_agent")
+            install_agent_v0 "$@"
             ;;
         *) show_usage ;;
     esac
