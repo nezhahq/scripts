@@ -582,7 +582,7 @@ update_docker_compose_image() {
         sed -i 's|registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard$|registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard:v0.20.13|' "$yaml_file_path"
     fi
     if grep -q "ghcr.io/naiba/nezha-dashboard$" "$yaml_file_path"; then
-        sed -i 's|ghcr.io/naiba/nezha-dashboard$|ghcr.io/naiba/nezha-dashboard`:v0.20.13|' "$yaml_file_path"
+        sed -i 's|ghcr.io/naiba/nezha-dashboard$|ghcr.io/naibahq/nezha-dashboard:v0.20.13|' "$yaml_file_path"
     fi
 }
 
@@ -829,8 +829,9 @@ show_usage() {
 
 show_menu() {
     printf "
-    ${green}哪吒监控管理脚本${plain}
+    ${green}哪吒监控管理脚本 For v0${plain}
     --- https://github.com/naiba/nezha ---
+    ${red}v0面板已停止维护，请及时升级至v1，详见https://nezha.wiki/${plain}
     ${green}1.${plain}  安装面板端
     ${green}2.${plain}  修改面板配置
     ${green}3.${plain}  启动面板
