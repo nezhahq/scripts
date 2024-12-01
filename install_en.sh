@@ -118,24 +118,24 @@ pre_check() {
     fi
 
     if [ -n "$CUSTOM_MIRROR" ]; then
-        GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
+        GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/v0"
         GITHUB_URL=$CUSTOM_MIRROR
         Get_Docker_URL="get.docker.com"
         Get_Docker_Argu=" -s docker --mirror Aliyun"
-        Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
+        Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard:v0-final"
     else
         if [ -z "$CN" ]; then
-            GITHUB_RAW_URL="raw.githubusercontent.com/nezhahq/scripts/main"
+            GITHUB_RAW_URL="raw.githubusercontent.com/nezhahq/scripts/v0"
             GITHUB_URL="github.com"
             Get_Docker_URL="get.docker.com"
             Get_Docker_Argu=" "
-            Docker_IMG="ghcr.io\/naiba\/nezha-dashboard"
+            Docker_IMG="ghcr.io\/naibahq\/nezha:v0-final"
         else
-            GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/main"
+            GITHUB_RAW_URL="gitee.com/naibahq/scripts/raw/v0"
             GITHUB_URL="gitee.com"
             Get_Docker_URL="get.docker.com"
             Get_Docker_Argu=" -s docker --mirror Aliyun"
-            Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard"
+            Docker_IMG="registry.cn-shanghai.aliyuncs.com\/naibahq\/nezha-dashboard:v0-final"
         fi
     fi
 }
@@ -344,14 +344,37 @@ install_agent() {
 
     echo "> Install Agent"
 
+    # echo "Obtaining Agent version number"
+
+
+    # _version=$(curl -m 10 -sL "https://api.github.com/repos/nezhahq/agent/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
+    # if [ -z "$_version" ]; then
+    #     _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/naibahq/agent/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+    # fi
+    # if [ -z "$_version" ]; then
+    #     _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/nezhahq/agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
+    # fi
+    # if [ -z "$_version" ]; then
+    #     _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/nezhahq/agent/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/nezhahq\/agent@/v/g')
+    # fi
+
+    # if [ -z "$_version" ]; then
+    #     err "Fail to obtain Agent version, please check if the network can link https://api.github.com/repos/nezhahq/agent/releases/latest"
+    #     return 1
+    # else
+    #     echo "The current latest version is: ${_version}"
+    # fi
+
+    _version="v0.20.5"
+
     # Nezha Monitoring Folder
     sudo mkdir -p $NZ_AGENT_PATH
 
     echo "Downloading Agent"
     if [ -z "$CN" ]; then
-        NZ_AGENT_URL="https://${GITHUB_URL}/nezhahq/agent/releases/download/v0.20.5/nezha-agent_linux_${os_arch}.zip"
+        NZ_AGENT_URL="https://${GITHUB_URL}/nezhahq/agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     else
-        NZ_AGENT_URL="https://${GITHUB_URL}/naibahq/agent/releases/download/v0.20.5/nezha-agent_linux_${os_arch}.zip"
+        NZ_AGENT_URL="https://${GITHUB_URL}/naibahq/agent/releases/download/${_version}/nezha-agent_linux_${os_arch}.zip"
     fi
 
     _cmd="wget -t 2 -T 60 -O nezha-agent_linux_${os_arch}.zip $NZ_AGENT_URL >/dev/null 2>&1"
@@ -547,22 +570,35 @@ restart_and_update() {
 }
 
 restart_and_update_docker() {
+    update_docker_compose_image
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml pull
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml up -d
 }
 
+update_docker_compose_image() {
+    yaml_file_path="${NZ_DASHBOARD_PATH}/docker-compose.yaml"
+    if grep -q "registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard$" "$yaml_file_path"; then
+        sed -i 's|registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard$|registry.cn-shanghai.aliyuncs.com/naibahq/nezha-dashboard:v0-final|' "$yaml_file_path"
+    fi
+    if grep -q "ghcr.io/naiba/nezha-dashboard$" "$yaml_file_path"; then
+        sed -i 's|ghcr.io/naiba/nezha-dashboard$|ghcr.io/naibahq/nezha:v0-final|' "$yaml_file_path"
+    fi
+}
+
 restart_and_update_standalone() {
-    _version=$(curl -m 10 -sL "https://api.github.com/repos/naiba/nezha/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
-    if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/naiba/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/naiba\/nezha@/v/g')
-    fi
-    if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/naiba/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/naiba\/nezha@/v/g')
-    fi
-    if [ -z "$_version" ]; then
-        _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/naibahq/nezha/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
-    fi
+    # _version=$(curl -m 10 -sL "https://api.github.com/repos/naiba/nezha/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g')
+    # if [ -z "$_version" ]; then
+    #     _version=$(curl -m 10 -sL "https://fastly.jsdelivr.net/gh/naiba/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/naiba\/nezha@/v/g')
+    # fi
+    # if [ -z "$_version" ]; then
+    #     _version=$(curl -m 10 -sL "https://gcore.jsdelivr.net/gh/naiba/nezha/" | grep "option\.value" | awk -F "'" '{print $2}' | sed 's/naiba\/nezha@/v/g')
+    # fi
+    # if [ -z "$_version" ]; then
+    #     _version=$(curl -m 10 -sL "https://gitee.com/api/v5/repos/naibahq/nezha/releases/latest" | awk -F '"' '{for(i=1;i<=NF;i++){if($i=="tag_name"){print $(i+2)}}}')
+    # fi
+
+    _version="v0.20.13"
 
     if [ -z "$_version" ]; then
         err "Fail to obtain Dashboard version, please check if the network can link https://api.github.com/repos/naiba/nezha/releases/latest"
