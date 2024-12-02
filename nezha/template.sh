@@ -330,15 +330,29 @@ modify_config() {
         return 0
     fi
 
-
     printf _("Please enter the site title: ")
     read -r nz_site_title
     printf _("Please enter the exposed port: (default 8008)")
     read -r nz_port
-    info _("Please specify the backend locale")
-    info "1. 中文（简体）"
-    info "2. 中文（台灣）"
-    info "3. English"
+    printf _("Please specify the preset nezha-agent host in install commands: (e.g. example.com:443)")
+    read -r nz_hostport
+    printf _("Do you prefer to connect Agent via TLS? [y/N]")
+    read -r input
+    case $input in
+    [yY][eE][sS] | [yY])
+        nz_tls=true
+        ;;
+    [nN][oO] | [nN])
+        nz_tls=false
+        ;;
+    *)
+        nz_tls=false
+        ;;
+    esac
+    println _("Please specify the backend locale")
+    println "1. 中文（简体）"
+    println "2. 中文（台灣）"
+    println "3. English"
     while true; do
         printf _("Please enter [1-3]: ")
         read -r option
@@ -361,7 +375,7 @@ modify_config() {
         esac
     done
 
-    if [ -z "$nz_lang" ] || [ -z "$nz_site_title" ]; then
+    if [ -z "$nz_lang" ] || [ -z "$nz_site_title" ] || [ -z "$nz_hostport" ]; then
         err _("All options cannot be empty")
         before_show_menu
         return 1
@@ -374,6 +388,8 @@ modify_config() {
     sed -i "s/nz_port/${nz_port}/" /tmp/nezha-config.yaml
     sed -i "s/nz_language/${nz_lang}/" /tmp/nezha-config.yaml
     sed -i "s/nz_site_title/${nz_site_title}/" /tmp/nezha-config.yaml
+    sed -i "s/nz_hostport/${nz_hostport}/" /tmp/nezha-config.yaml
+    sed -i "s/nz_tls/${nz_tls}/" /tmp/nezha-config.yaml
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         sed -i "s/nz_port/${nz_port}/g" /tmp/nezha-docker-compose.yaml
         sed -i "s/nz_image_url/${Docker_IMG}/" /tmp/nezha-docker-compose.yaml

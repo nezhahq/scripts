@@ -330,15 +330,29 @@ modify_config() {
         return 0
     fi
 
-
     printf "请输入站点标题: "
     read -r nz_site_title
     printf "请输入暴露端口: (默认 8008)"
     read -r nz_port
-    info "请指定后台语言"
-    info "1. 中文（简体）"
-    info "2. 中文（台灣）"
-    info "3. English"
+    printf "请指定安装命令中预设的 nezha-agent 连接地址 （例如 example.com:443）"
+    read -r nz_hostport
+    printf "是否希望通过 TLS 连接 Agent？（影响安装命令）[y/N]"
+    read -r input
+    case $input in
+    [yY][eE][sS] | [yY])
+        nz_tls=true
+        ;;
+    [nN][oO] | [nN])
+        nz_tls=false
+        ;;
+    *)
+        nz_tls=false
+        ;;
+    esac
+    println "请指定后台语言"
+    println "1. 中文（简体）"
+    println "2. 中文（台灣）"
+    println "3. English"
     while true; do
         printf "请输入选项 [1-3]"
         read -r option
@@ -361,7 +375,7 @@ modify_config() {
         esac
     done
 
-    if [ -z "$nz_lang" ] || [ -z "$nz_site_title" ]; then
+    if [ -z "$nz_lang" ] || [ -z "$nz_site_title" ] || [ -z "$nz_hostport" ]; then
         err ""所有选项都不能为空""
         before_show_menu
         return 1
@@ -374,6 +388,8 @@ modify_config() {
     sed -i "s/nz_port/${nz_port}/" /tmp/nezha-config.yaml
     sed -i "s/nz_language/${nz_lang}/" /tmp/nezha-config.yaml
     sed -i "s/nz_site_title/${nz_site_title}/" /tmp/nezha-config.yaml
+    sed -i "s/nz_hostport/${nz_hostport}/" /tmp/nezha-config.yaml
+    sed -i "s/nz_tls/${nz_tls}/" /tmp/nezha-config.yaml
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         sed -i "s/nz_port/${nz_port}/g" /tmp/nezha-docker-compose.yaml
         sed -i "s/nz_image_url/${Docker_IMG}/" /tmp/nezha-docker-compose.yaml
