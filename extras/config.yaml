@@ -2,3 +2,5 @@ debug: false
 listenport: nz_port
 language: nz_language
 sitename: "nz_site_title"
+installhost: nz_hostport
+tls: nz_tls
