@@ -125,29 +125,29 @@ installation_check() {
     if docker compose version >/dev/null 2>&1; then
         DOCKER_COMPOSE_COMMAND="docker compose"
         if sudo $DOCKER_COMPOSE_COMMAND ls | grep -qw "$NZ_DASHBOARD_PATH/docker-compose.yaml" >/dev/null 2>&1; then
-            NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezha-dashboard")
+            NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezhahq/nezha")
             if [ -n "$NEZHA_IMAGES" ]; then
-                echo _("Docker image with nezha-dashboard repository exists:")
+                echo _("Docker image with nezha repository exists:")
                 echo "$NEZHA_IMAGES"
                 IS_DOCKER_NEZHA=1
                 FRESH_INSTALL=0
                 return
             else
-                echo _("No Docker images with the nezha-dashboard repository were found.")
+                echo _("No Docker images with the nezha repository were found.")
             fi
         fi
     elif command -v docker-compose >/dev/null 2>&1; then
         DOCKER_COMPOSE_COMMAND="docker-compose"
         if sudo $DOCKER_COMPOSE_COMMAND -f "$NZ_DASHBOARD_PATH/docker-compose.yaml" config >/dev/null 2>&1; then
-            NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezha-dashboard")
+            NEZHA_IMAGES=$(sudo docker images --format "{{.Repository}}":"{{.Tag}}" | grep -w "nezhahq/nezha")
             if [ -n "$NEZHA_IMAGES" ]; then
-                echo _("Docker image with nezha-dashboard repository exists:")
+                echo _("Docker image with nezha repository exists:")
                 echo "$NEZHA_IMAGES"
                 IS_DOCKER_NEZHA=1
                 FRESH_INSTALL=0
                 return
             else
-                echo _("No Docker images with the nezha-dashboard repository were found.")
+                echo _("No Docker images with the nezha repository were found.")
             fi
         fi
     fi
