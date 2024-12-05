@@ -182,7 +182,7 @@ install() {
 }
 
 uninstall() {
-    find "$NZ_AGENT_PATH" -type f -name "*config*" | while read -r file; do
+    find "$NZ_AGENT_PATH" -type f -name "*config*.yml" | while read -r file; do
         sudo "$NZ_AGENT_PATH/nezha-agent" service -c "$file" uninstall
         sudo rm "$file"
     done
