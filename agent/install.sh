@@ -5,6 +5,7 @@ NZ_AGENT_PATH="${NZ_BASE_PATH}/agent"
 
 red='\033[0;31m'
 green='\033[0;32m'
+yellow='\033[0;33m'
 plain='\033[0m'
 
 err() {
@@ -13,6 +14,10 @@ err() {
 
 success() {
     printf "${green}%s${plain}\n" "$*"
+}
+
+info() {
+	printf "${yellow}%s${plain}\n" "$*"
 }
 
 sudo() {
@@ -175,6 +180,19 @@ install() {
 
     success "nezha-agent successfully installed"
 }
+
+uninstall() {
+    find "$NZ_AGENT_PATH" -type f -name "*config*.yml" | while read -r file; do
+        sudo "$NZ_AGENT_PATH/nezha-agent" service -c "$file" uninstall
+        sudo rm "$file"
+    done
+    info "Uninstallation completed."
+}
+
+if [ "$1" = "uninstall" ]; then
+    uninstall
+    exit
+fi
 
 init
 install
