@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-03 13:42+0800\n"
-"PO-Revision-Date: 2024-12-03 13:45+0800\n"
+"POT-Creation-Date: 2024-12-14 15:39+0800\n"
+"PO-Revision-Date: 2024-12-14 15:39+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -18,204 +18,204 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 
-#: nezha/template.sh:35
+#: nezha/template.sh:39
 msgid ""
 "ERROR: sudo is not installed on the system, the action cannot be proceeded."
 msgstr "错误: 您的系统未安装 sudo，因此无法进行该项操作。"
 
-#: nezha/template.sh:47
+#: nezha/template.sh:51
 msgid "Run '$*' failed."
 msgstr "运行 '$*' 失败。"
 
-#: nezha/template.sh:57
+#: nezha/template.sh:61
 msgid "$dep not found, please install it first."
 msgstr "未找到依赖 $dep，请先安装。"
 
-#: nezha/template.sh:117
+#: nezha/template.sh:121
 msgid "Unknown architecture: $uname"
 msgstr "未知架构：$uname"
 
-#: nezha/template.sh:130 nezha/template.sh:144
+#: nezha/template.sh:134 nezha/template.sh:148
 msgid "Docker image with nezha repository exists:"
 msgstr "存在带有 nezha 仓库的 Docker 镜像："
 
-#: nezha/template.sh:136 nezha/template.sh:150
+#: nezha/template.sh:140 nezha/template.sh:154
 msgid "No Docker images with the nezha repository were found."
 msgstr "未找到带有 nezha 仓库的 Docker 镜像。"
 
-#: nezha/template.sh:163
+#: nezha/template.sh:167
 msgid "Select your installation method:"
 msgstr "请自行选择您的安装方式："
 
-#: nezha/template.sh:165
+#: nezha/template.sh:169
 msgid "2. Standalone"
 msgstr "2. 独立安装"
 
-#: nezha/template.sh:167
+#: nezha/template.sh:171
 msgid "Please enter [1-2]: "
 msgstr "请输入选择 [1-2]："
 
-#: nezha/template.sh:179
+#: nezha/template.sh:183
 msgid "Please enter the correct number [1-2]"
 msgstr "请输入正确的选择 [1-2]"
 
-#: nezha/template.sh:196
+#: nezha/template.sh:200
 msgid ""
 "According to the information provided by various geoip api, the current IP "
 "may be in China"
 msgstr "根据geoip api提供的信息，当前IP可能在中国"
 
-#: nezha/template.sh:197
+#: nezha/template.sh:201
 msgid ""
 "Will the installation be done with a Chinese Mirror? [Y/n] (Custom Mirror "
 "Input 3): "
 msgstr "否选用中国镜像完成安装? [Y/n] (自定义镜像输入 3)："
 
-#: nezha/template.sh:201
+#: nezha/template.sh:205
 msgid "Use Chinese Mirror"
 msgstr "使用中国镜像"
 
-#: nezha/template.sh:206 nezha/template.sh:220
+#: nezha/template.sh:210 nezha/template.sh:224
 msgid "Do Not Use Chinese Mirror"
 msgstr "不使用中国镜像"
 
-#: nezha/template.sh:210
+#: nezha/template.sh:214
 msgid "Use Custom Mirror"
 msgstr "使用自定义镜像"
 
-#: nezha/template.sh:211
+#: nezha/template.sh:215
 msgid ""
 "Please enter a custom image (e.g. :dn-dao-github-mirror.daocloud.io). If "
 "left blank, it won't be used: "
 msgstr ""
 "请输入自定义镜像 (例如:dn-dao-github-mirror.daocloud.io),留空为不使用："
 
-#: nezha/template.sh:244
+#: nezha/template.sh:248
 msgid "> Update Script"
 msgstr "> 更新脚本"
 
-#: nezha/template.sh:246
+#: nezha/template.sh:250
 msgid "https://${GITHUB_RAW_URL}/install_en.sh"
 msgstr "https://${GITHUB_RAW_URL}/install.sh"
 
-#: nezha/template.sh:249 nezha/template.sh:266
+#: nezha/template.sh:253 nezha/template.sh:270
 msgid "Execute new script after 3s"
 msgstr "3s后执行新脚本"
 
-#: nezha/template.sh:274
+#: nezha/template.sh:278
 msgid "* Press Enter to return to the main menu *"
 msgstr "* 按回车返回主菜单 *"
 
-#: nezha/template.sh:279
+#: nezha/template.sh:283
 msgid "> Install"
 msgstr "> 安装"
 
-#: nezha/template.sh:285
+#: nezha/template.sh:289
 msgid ""
 "You may have already installed the dashboard, repeated installation will "
 "overwrite the data, please pay attention to backup."
 msgstr "您可能已经安装过面板端，重复安装会覆盖数据，请注意备份。"
 
-#: nezha/template.sh:286
+#: nezha/template.sh:290
 msgid "Exit the installation? [Y/n]"
 msgstr "是否退出安装? [Y/n]"
 
-#: nezha/template.sh:290 nezha/template.sh:297
+#: nezha/template.sh:294 nezha/template.sh:301
 msgid "Exit the installation"
 msgstr "退出安装"
 
-#: nezha/template.sh:294
+#: nezha/template.sh:298
 msgid "Continue"
 msgstr "继续安装"
 
-#: nezha/template.sh:311
+#: nezha/template.sh:315
 msgid "Modify Configuration"
 msgstr "> 修改配置"
 
-#: nezha/template.sh:315
+#: nezha/template.sh:319
 msgid "Download Docker Script"
 msgstr "正在下载 Docker 脚本"
 
-#: nezha/template.sh:318 nezha/template.sh:329
+#: nezha/template.sh:322 nezha/template.sh:333
 msgid ""
 "Script failed to get, please check if the network can link ${GITHUB_RAW_URL}"
 msgstr "脚本获取失败，请检查本机能否链接  ${GITHUB_RAW_URL}"
 
-#: nezha/template.sh:322
+#: nezha/template.sh:326
 msgid ""
 "Please install docker-compose manually. https://docs.docker.com/compose/"
 "install/linux/"
 msgstr ""
 "请手动安装 docker-compose。 https://docs.docker.com/compose/install/linux/"
 
-#: nezha/template.sh:333
+#: nezha/template.sh:337
 msgid "Please enter the site title: "
 msgstr "请输入站点标题: "
 
-#: nezha/template.sh:335
+#: nezha/template.sh:339
 msgid "Please enter the exposed port: (default 8008)"
 msgstr "请输入暴露端口: (默认 8008)"
 
-#: nezha/template.sh:337
+#: nezha/template.sh:341
 msgid ""
 "Please specify the preset nezha-agent host in install commands: (e.g. "
 "example.com:443)"
 msgstr "请指定安装命令中预设的 nezha-agent 连接地址 （例如 example.com:443）"
 
-#: nezha/template.sh:339
+#: nezha/template.sh:343
 msgid "Do you prefer to connect Agent via TLS? [y/N]"
 msgstr "是否希望通过 TLS 连接 Agent？（影响安装命令）[y/N]"
 
-#: nezha/template.sh:352
+#: nezha/template.sh:356
 msgid "Please specify the backend locale"
 msgstr "请指定后台语言"
 
-#: nezha/template.sh:357
+#: nezha/template.sh:361
 msgid "Please enter [1-3]: "
 msgstr "请输入选项 [1-3]"
 
-#: nezha/template.sh:373
+#: nezha/template.sh:377
 msgid "Please enter the correct number [1-3]"
 msgstr "请输入正确的选项 [1-3]"
 
-#: nezha/template.sh:379
+#: nezha/template.sh:383
 msgid "All options cannot be empty"
 msgstr "\"所有选项都不能为空\""
 
-#: nezha/template.sh:405
+#: nezha/template.sh:409
 msgid "Downloading service file"
 msgstr "正在下载服务文件"
 
-#: nezha/template.sh:409 nezha/template.sh:415
+#: nezha/template.sh:413 nezha/template.sh:419
 msgid ""
 "File failed to get, please check if the network can link ${GITHUB_RAW_URL}"
 msgstr "文件下载失败，请检查本机能否连接 ${GITHUB_RAW_URL}"
 
-#: nezha/template.sh:423
+#: nezha/template.sh:427
 msgid ""
 "Dashboard configuration modified successfully, please wait for Dashboard "
 "self-restart to take effect"
 msgstr "Dashboard 配置 修改成功，请稍等 Dashboard 重启生效"
 
-#: nezha/template.sh:433
+#: nezha/template.sh:437
 msgid "> Restart and Update"
 msgstr "> 重启并更新"
 
-#: nezha/template.sh:442
+#: nezha/template.sh:446
 msgid "Nezha Monitoring Restart Successful"
 msgstr "哪吒监控 重启成功"
 
-#: nezha/template.sh:443
+#: nezha/template.sh:447
 msgid "Default address: domain:site_access_port"
 msgstr "默认地址：域名:站点访问端口"
 
-#: nezha/template.sh:445
+#: nezha/template.sh:449
 msgid ""
 "The restart failed, probably because the boot time exceeded two seconds, "
 "please check the log information later"
 msgstr "重启失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
 
-#: nezha/template.sh:472
+#: nezha/template.sh:477
 msgid ""
 "Fail to obtain Dashboard version, please check if the network can link "
 "https://api.github.com/repos/nezhahq/nezha/releases/latest"
@@ -223,88 +223,94 @@ msgstr ""
 "获取 Dashboard 版本号失败，请检查本机能否链接 https://api.github.com/repos/"
 "nezhahq/nezha/releases/latest"
 
-#: nezha/template.sh:475
+#: nezha/template.sh:480
 msgid "The current latest version is: ${_version}"
 msgstr "当前最新版本为： ${_version}"
 
-#: nezha/template.sh:504
+#: nezha/template.sh:511
 msgid "> View Log"
 msgstr "> 获取日志"
 
-#: nezha/template.sh:530
+#: nezha/template.sh:537
 msgid "> Uninstall"
 msgstr "> 卸载"
 
-#: nezha/template.sh:569
+#: nezha/template.sh:539
+msgid "WARNING: Please backup your files before proceeding uninstallation."
+msgstr "警告：卸载前请备份您的文件。"
+
+#: nezha/template.sh:540
+msgid "Proceed? [y/N] "
+msgstr "继续？ [y/N] "
+
+#: nezha/template.sh:544
+msgid "Uninstalling..."
+msgstr "卸载中…"
+
+#: nezha/template.sh:591
 msgid "Nezha Monitor Management Script Usage: "
 msgstr "哪吒监控 管理脚本使用方法: "
 
-#: nezha/template.sh:571
+#: nezha/template.sh:593
 msgid "./nezha.sh                    - Show Menu"
 msgstr "./nezha.sh                    - 显示管理菜单"
 
-#: nezha/template.sh:572
+#: nezha/template.sh:594
 msgid "./nezha.sh install            - Install Dashboard"
 msgstr "./nezha.sh install            - 安装面板端"
 
-#: nezha/template.sh:573
+#: nezha/template.sh:595
 msgid "./nezha.sh modify_config      - Modify Dashboard Configuration"
 msgstr "./nezha.sh modify_config      - 修改面板配置"
 
-#: nezha/template.sh:574
+#: nezha/template.sh:596
 msgid "./nezha.sh restart_and_update - Restart and Update the Dashboard"
 msgstr "./nezha.sh restart_and_update - 重启并更新面板"
 
-#: nezha/template.sh:575
+#: nezha/template.sh:597
 msgid "./nezha.sh show_log           - View Dashboard Log"
 msgstr "./nezha.sh show_log           - 查看面板日志"
 
-#: nezha/template.sh:576
+#: nezha/template.sh:598
 msgid "./nezha.sh uninstall          - Uninstall Dashboard"
 msgstr "./nezha.sh uninstall          - 卸载管理面板"
 
-#: nezha/template.sh:581
+#: nezha/template.sh:603
 msgid "${green}Nezha Monitor Management Script${plain}"
 msgstr "${green}哪吒监控管理脚本${plain}"
 
-#: nezha/template.sh:583
+#: nezha/template.sh:605
 msgid "${green}1.${plain}  Install Dashboard"
 msgstr "${green}1.${plain}  安装面板端"
 
-#: nezha/template.sh:584
+#: nezha/template.sh:606
 msgid "${green}2.${plain}  Modify Dashboard Configuration"
 msgstr "${green}2.${plain}  修改面板配置"
 
-#: nezha/template.sh:585
+#: nezha/template.sh:607
 msgid "${green}3.${plain}  Restart and Update Dashboard"
 msgstr "${green}3.${plain}  重启并更新面板"
 
-#: nezha/template.sh:586
+#: nezha/template.sh:608
 msgid "${green}4.${plain}  View Dashboard Log"
 msgstr "${green}4.${plain}  查看面板日志"
 
-#: nezha/template.sh:587
+#: nezha/template.sh:609
 msgid "${green}5.${plain}  Uninstall Dashboard"
 msgstr "${green}5.${plain}  卸载管理面板"
 
-#: nezha/template.sh:589
+#: nezha/template.sh:611
 msgid "${green}6.${plain}  Update Script"
 msgstr "${green}6.${plain}  更新脚本"
 
-#: nezha/template.sh:591
+#: nezha/template.sh:613
 msgid "${green}0.${plain}  Exit Script"
 msgstr "${green}0.${plain}  退出脚本"
 
-#: nezha/template.sh:593
+#: nezha/template.sh:615
 msgid "Please enter [0-6]: "
 msgstr "请输入选择 [0-6]: "
 
-#: nezha/template.sh:617
+#: nezha/template.sh:639
 msgid "Please enter the correct number [0-6]"
 msgstr "请输入正确的数字 [0-6]"
-
-#~ msgid "Installing Docker"
-#~ msgstr "正在安装 Docker"
-
-#~ msgid "Docker installed successfully"
-#~ msgstr "Docker 安装成功"
