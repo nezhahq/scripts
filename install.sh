@@ -14,6 +14,10 @@ err() {
     printf "${red}%s${plain}\n" "$*" >&2
 }
 
+warn() {
+    printf "${red}%s${plain}\n" "$*"
+}
+
 success() {
     printf "${green}%s${plain}\n" "$*"
 }
@@ -453,6 +457,7 @@ restart_and_update() {
 restart_and_update_docker() {
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml pull
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml down
+    sleep 2
     sudo $DOCKER_COMPOSE_COMMAND -f ${NZ_DASHBOARD_PATH}/docker-compose.yaml up -d
 }
 
@@ -491,6 +496,8 @@ restart_and_update_standalone() {
     sudo wget -qO $NZ_DASHBOARD_PATH/app.zip "$NZ_DASHBOARD_URL" >/dev/null 2>&1 && sudo unzip -qq -o $NZ_DASHBOARD_PATH/app.zip -d $NZ_DASHBOARD_PATH && sudo mv $NZ_DASHBOARD_PATH/dashboard-linux-$os_arch $NZ_DASHBOARD_PATH/app && sudo rm $NZ_DASHBOARD_PATH/app.zip
     sudo chmod +x $NZ_DASHBOARD_PATH/app
 
+    sleep 2
+
     if [ "$INIT" = "systemd" ]; then
         sudo systemctl enable nezha-dashboard
         sudo systemctl restart nezha-dashboard
@@ -528,6 +535,21 @@ show_dashboard_log_standalone() {
 
 uninstall() {
     echo "> 卸载"
+
+    warn "警告：卸载前请备份您的文件。"
+    printf "继续？ [y/N] "
+    read -r input
+    case $input in
+    [yY][eE][sS] | [yY])
+        info "卸载中…"
+        ;;
+    [nN][oO] | [nN])
+        return
+        ;;
+    *)
+        return
+        ;;
+    esac
 
     if [ "$IS_DOCKER_NEZHA" = 1 ]; then
         uninstall_dashboard_docker
