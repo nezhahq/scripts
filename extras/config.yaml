@@ -1,6 +1,6 @@
 debug: false
-listenport: nz_port
+listen_port: nz_port
 language: nz_language
-sitename: "nz_site_title"
-installhost: nz_hostport
+site_name: "nz_site_title"
+install_host: nz_hostport
 tls: nz_tls
