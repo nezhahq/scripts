@@ -35,7 +35,7 @@ sudo() {
 }
 
 deps_check() {
-    local deps="unzip grep"
+    local deps="curl unzip grep"
     local _err=0
     local missing=""
 
@@ -45,11 +45,6 @@ deps_check() {
             missing="${missing} $dep"
         fi
     done
-
-    if ! command -v curl >/dev/null 2>&1 && ! command -v wget >/dev/null 2>&1; then
-        _err=1
-        missing="${missing} curl"
-    fi
 
     if [ "$_err" -ne 0 ]; then
         err "Missing dependencies:$missing. Please install them and try again."
