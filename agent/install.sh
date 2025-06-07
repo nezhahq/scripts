@@ -17,7 +17,7 @@ success() {
 }
 
 info() {
-	printf "${yellow}%s${plain}\n" "$*"
+    printf "${yellow}%s${plain}\n" "$*"
 }
 
 sudo() {
@@ -35,14 +35,21 @@ sudo() {
 }
 
 deps_check() {
-    deps="wget unzip grep"
-    set -- "$api_list"
+    local deps="curl unzip grep"
+    local _err=0
+    local missing=""
+
     for dep in $deps; do
         if ! command -v "$dep" >/dev/null 2>&1; then
-            err "$dep not found, please install it first."
-            exit 1
+            _err=1
+            missing="${missing} $dep"
         fi
     done
+
+    if [ "$_err" -ne 0 ]; then
+        err "Missing dependencies:$missing. Please install them and try again."
+        exit 1
+    fi
 }
 
 geo_check() {
@@ -141,7 +148,12 @@ install() {
         NZ_AGENT_URL="https://${GITHUB_URL}/naibahq/agent/releases/download/${_version}/nezha-agent_${os}_${os_arch}.zip"
     fi
 
-    _cmd="wget -T 60 -O /tmp/nezha-agent_${os}_${os_arch}.zip $NZ_AGENT_URL >/dev/null 2>&1"
+    if command -v wget >/dev/null 2>&1; then
+        _cmd="wget --timeout=60 -O /tmp/nezha-agent_${os}_${os_arch}.zip \"$NZ_AGENT_URL\" >/dev/null 2>&1"
+    elif command -v curl >/dev/null 2>&1; then
+        _cmd="curl --max-time 60 -fsSL \"$NZ_AGENT_URL\" -o /tmp/nezha-agent_${os}_${os_arch}.zip >/dev/null 2>&1"
+    fi
+
     if ! eval "$_cmd"; then
         err "Download nezha-agent release failed, check your network connectivity"
         exit 1
