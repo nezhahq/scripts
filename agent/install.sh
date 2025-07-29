@@ -96,7 +96,7 @@ env_check() {
             os_arch="mipsle"
             ;;
         *)
-            err "Unknown architecture: $uname"
+            err "Unknown architecture: $mach"
             exit 1
             ;;
     esac
