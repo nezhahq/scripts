@@ -95,6 +95,9 @@ env_check() {
         mipsel|mipsle)
             os_arch="mipsle"
             ;;
+        loongarch64)
+            os_arch="loong64"
+            ;;
         *)
             err "Unknown architecture: $mach"
             exit 1
